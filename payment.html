@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head >
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="dist/CSS/myFont.css">
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<link rel="stylesheet/less" type="text/css" href="dist/CSS/html_css/payment.less">
+	<style>
+		.modal .modal-dialog{
+			margin: 29vh auto;
+		}
+		.modal .modal-body{
+			padding: 10vw;
+		}
+		.modal .modal-body p{
+			font-size: 5vw;
+			text-align: center;
+		}
+		.modal .modal-footer{
+			display: flex;
+			justify-content: space-evenly;
+			padding: 20px;
+		}
+		.modal .modal-footer button{
+			padding: 15px 80px;
+			font-size: 35px;
+		}
+	</style>
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+	<script src="dist/JS/jquery.idledetection.js"></script>
+	<script src="dist/JS/myFunc.js"></script>
+	<script src="dist/JS/jqueryCookie.js"></script>
+	<script src="dist/JS/html_js/payment.js"></script>
+	<script src="dist/JS/less.min.js"></script>
+<title></title>
+</head>
+<body>
+	<div id="topTitle">payment</div>
+
+	<!-- ������ʾ֧��loading�� -->
+	<div id="hiddenDiv">
+		<div class="hiddenDivInnerDiv" id ="forScan">
+			Scan Gift Card.
+		</div>
+		<div class="hiddenDivInnerDiv" id ="forspoonityAlipay">
+			Waiting <span id="second">60</span>
+		</div>
+		<div class="hiddenDivInnerDiv" id ="forClover">
+			<div id ="CloverWaitting">
+				Waiting <span id="CloverSecond">60</span>
+			</div>
+			<div id ="arrow">
+				<span class='glyphicon glyphicon glyphicon-arrow-down' style="font-size:20vw"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="payTypeDiv">
+		<div class="payTitle">Gift Card</div>
+		<div class="payMiddle middle1"></div>
+		<div class="payFoot1">
+			Scan to pay in the store
+		</div>
+	</div>
+
+	<div class="payTypeDiv">
+		<div class="payTitle">Credit Card</div>
+		<div class="payMiddle middle2" ></div>
+		<div class="payFoot2" >
+			Please insert your card
+			<br />
+			and do not remove it
+		</div>
+	</div>
+
+	<div class="payTypeDiv">
+		<div class="payTitle">Quick Pay</div>
+		<div class="payMiddle middle3"></div>
+		<div class="payFoot3">Quick Pay</div>
+	</div>
+
+
+	<div id="foot" >
+		<div data-toggle="modal" data-target="#cancelTransModal" class="foot3">
+			<span  class="glyphicon glyphicon-remove footMenu"></span>
+			<br/>
+			<span class="footMenuWord">Cancel</span> |
+			<span class="footMenuWord">取消</span>
+		</div>
+		<div class="foot3">
+			<span class="glyphicon glyphicon-home footMenu"></span>
+			<br/>
+			<span class="footMenuWord">Menu</span> |
+			<span class="footMenuWord">菜單</span>
+		</div>
+		<div class="foot3">
+			<span class="glyphicon glyphicon-arrow-left footMenu"></span>
+			<br/>
+			<span class="footMenuWord">Back</span> |
+			<span class="footMenuWord">返回</span>
+		</div>
+	</div>
+	<div id="cancelTransModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Are you sure you want to cancel this order ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelTrans" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" tabindex="-1" id="mydialog" role="dialog"></div>
+</body>
+</html>

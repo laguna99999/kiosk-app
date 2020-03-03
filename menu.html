@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html ng-app style="height:100%">
+  <head>
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+    <script src="dist/JS/jquery.idledetection.js"></script>
+    <script src="dist/JS/myFunc.js"></script>
+
+    <link rel="stylesheet" href="dist/CSS/myFont.css">
+    <style>
+        .cart-badge{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            font-size: 35px;
+            line-height: 45px;
+            font-weight: 700;
+            top: 35px;
+            text-align: center;
+            right: 55px;
+            -webkit-box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+            -moz-box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+            box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+            z-index: 10;
+        }
+    </style>
+  </head>
+  <body background="src/img/background.jpg" style="margin:0;padding-top:4%;height:100%;background-size:100% 100%;background-repeat:no-repeat">
+	<div id="topDiv" style="height:10%;" class="cart">
+		<div style="font-family:MyNewFont;font-size:9vw;text-align:center;height:100%;"><b>Menu</b></div>
+	  	<span onclick="javascript:location.href='cart.html'" class="glyphicon glyphicon-shopping-cart" style="float:right;font-size:5vw;color:white;text-align:center; width:12%;height:70%; background:black;-webkit-border-radius: 100% 100% 100% 100%;" aria-hidden="true"></span>
+	</div>
+	<div id="box" style="width:85%;height:90%;margin:0 auto">
+
+		<div style="height:22%;margin-bottom:2%">
+			<div style="width:49%;margin:0;height:100%;display:inline-block;float:left">
+				<div style="width:100%;height:100%;position:relative;">
+					<img id="coldDessert" src="src/img/m1.jpg" style="width:100%;height:85%" onclick=""/>
+					<div  style="width:100%;height:15%;position:absolute;left:0;bottom:0px;background-color:#77C9DB;font-size:3.5vw;color:white;text-align:center">Cold Dessert</div>
+				</div>
+			</div>
+			<div style="width:49%;margin:0;height:100%;display:inline-block;float:right">
+				<div style="width:100%;height:100%;position:relative;">
+				    <img id="hotDessert" src="src/img/m2.jpg" style="width:100%;height:85%"/>
+					<div  style="width:100%;height:15%;position:absolute;left:0;bottom:0px;background-color:#FF9B95;font-size:3.5vw;color:white;text-align:center">Hot Dessert</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="height:22%;margin-bottom:2%">
+			<div style="width:49%;margin:0;height:100%;display:inline-block;float:left">
+				<div style="width:100%;height:100%;position:relative;">
+					<img id="coldDrink" src="src/img/m3.jpg" style="width:100%;height:85%"/>
+					<div  style="width:100%;height:15%;position:absolute;left:0;bottom:0px;background-color:#83BF99;font-size:3.5vw;color:white;text-align:center">Cold Drink</div>
+				</div>
+			</div>
+			<div style="width:49%;margin:0;height:100%;display:inline-block;float:right">
+				<div style="width:100%;height:100%;position:relative;">
+				    <img id="hotDrink" src="src/img/m4.jpg" style="width:100%;height:85%"/>
+					<div  style="width:100%;height:15%;position:absolute;left:0;bottom:0px;background-color:#CB2931;font-size:3.5vw;color:white;text-align:center">Hot Drink</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="row3" style="height:33%;margin-bottom:2%">
+			<div style="width:49%;margin:0;height:100%;float:left">
+				<div id="lang1" style="width:100%;height:100%;position:relative;">
+					<img id="shavedIce" src="src/img/m5.jpg" style="width:100%;height:90%"/>
+					<div  style="width:100%;height:10%;position:absolute;left:0;bottom:0px;background-color:#FFB13D;font-size:3.5vw;color:white;text-align:center">Shaved Ice</div>
+				</div>
+			</div>
+			<div id="smallDiv" style="width:49%;height:100%;float:right">
+				<div style="width:100%;height:50%;position:relative;">
+				    <img id="smallBite" src="src/img/m6.jpg" style="width:100%;height:80%"/>
+					<div  style="width:100%;height:20%;position:absolute;left:0;bottom:0px;background-color:#C1BFB1;font-size:3.5vw;color:white;text-align:center">Small Bite</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="height:17%;">
+			<div style="width:49%;margin:0;height:100%;float:left">
+				<div style="width:100%;height:100%;position:relative;">
+					<img id="createYourOwn" src="src/img/m7.jpg" style="width:100%;height:90%"/>
+					<div  style="width:100%;height:20%;position:absolute;left:0;bottom:0px;background-color:#AF6137;font-size:3.5vw;color:white;text-align:center">Create your own</div>
+				</div>
+			</div>
+			<div style="width:49%;margin:0;height:100%;float:right">
+				<div id="lastDiv" style="width:100%;height:50%;position:relative;">
+				    <img src="src/img/m8.jpg" style="width:100%;height:90%"/>
+					<div  style="width:100%;height:10%;position:absolute;left:0;bottom:0px;background-color:#381410;font-size:3.5vw;color:white;text-align:center">Promotion</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(function(){
+		autoCancelTrans()
+
+		$("body").css({
+			"height":document.documentElement.clientHeight
+		})
+
+		$("#topDiv span").css({
+			"line-height":$("#topDiv span").height()+"px",
+			"margin":$("#topDiv").height()*-1+"px 5% 0 0"
+		})
+
+		$("#lastDiv").css({
+			"height":$("#lang1").height(),
+			"margin-top":$("#lang1").height()/-2
+		})
+
+        // Cart badge
+		let orderList = JSON.parse(callHostPost("getTransactionArticle",{data:"1"}));
+		if(orderList.itemList.length > 0){
+			$('.cart').append($('<span class="cart-badge">' + orderList.itemList.length + '</span>'))
+		}
+
+		$("#coldDessert").click(function(){
+			window.location.href="articles.html?groupIndex=1&groupCode=204"
+		})
+
+		$("#hotDessert").click(function(){
+			window.location.href="articles.html?groupIndex=2&groupCode=252"
+		})
+
+		$("#coldDrink").click(function(){
+			window.location.href="articles.html?groupIndex=3&groupCode=208"
+		})
+
+		$("#hotDrink").click(function(){
+			window.location.href="articles.html?groupIndex=4&groupCode=267"
+		})
+
+		$("#shavedIce").click(function(){
+			window.location.href="articles.html?groupIndex=5&groupCode=207"
+		})
+
+		$("#smallBite").click(function(){
+			window.location.href="articles.html?groupIndex=6&groupCode=250"
+		})
+
+		$("#createYourOwn").click(function(){
+			window.location.href="articles.html?groupIndex=7&groupCode=333"
+		})
+
+		$("#lastDiv").click(function(){
+			window.location.href="articles.html?groupIndex=8&groupCode= "
+		})
+	})
+    function callHostPost(command, parameters) {
+		// Create the query string readimg the fields of the passed parameters object
+		var qs = '';
+		if (parameters != null) {
+			for(var key in parameters)
+	  			qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+		}
+		// Remove last ampersand
+		if (qs.length > 0)
+			qs = '?' + qs.substring(0, qs.length-1);
+
+		var request = new XMLHttpRequest();
+		// `false` makes the request synchronous
+		request.open('POST', 'http://localhost:8080/kiosk/'+command, false);
+		request.send(qs);
+
+		if (request.status === 200)
+			return request.responseText;
+		else
+			return '!error ' + request.status;
+	}
+	</script>
+  </body>
+</html>

@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html>
+<html style="height:100%">
+<head>
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+	<script src="dist/JS/jquery.idledetection.js"></script>
+	<script src="dist/JS/myFunc.js"></script>
+    <link rel="stylesheet" href="dist/CSS/myFont.css">
+	<style>
+		.tab-slider{
+			width: 100%;
+			overflow: scroll;
+		}
+		.tab-slider .tab-items{
+			padding: 0;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-around;
+			min-width: 100%;
+			height: 250px;
+		}
+		.tab-slider .tab-items li{
+			list-style: none;
+			width: 170px;
+			display: inline-block;
+			text-align: center;
+			transition: 0.2s cubic-bezier(0.4, 0, 1, 1);
+		}
+		.tab-slider .tab-items li.active{
+			width: 185px;
+			transition: 0.2s cubic-bezier(0.4, 0, 1, 1);
+		}
+		.tab-slider .tab-items li.active p{
+			color: red;
+		}
+		.tab-slider .tab-items li.active img{
+
+		}
+		.tab-slider .tab-items li p{
+			font-size: 22px;
+		}
+		.tab-slider .tab-items li img{
+			width: 90%;
+			border-radius: 50%;
+			-webkit-box-shadow: 7px 7px 19px -10px rgba(0,0,0,1);
+			-moz-box-shadow: 7px 7px 19px -10px rgba(0,0,0,1);
+			box-shadow: 7px 7px 19px -10px rgba(0,0,0,1);
+		}
+		.fade-out{
+			opacity: 0.3;
+			transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
+		}
+		.fade-in{
+			opacity: 1;
+			transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
+		}
+		.modal .modal-dialog{
+			margin: 29vh auto;
+		}
+		.modal .modal-body{
+			padding: 10vw;
+		}
+		.modal .modal-body p{
+			font-size: 5vw;
+			text-align: center;
+		}
+		.modal .modal-footer{
+			display: flex;
+    		justify-content: space-evenly;
+			padding: 20px;
+		}
+		.modal .modal-footer button{
+			padding: 15px 80px;
+			font-size: 35px;
+		}
+		.cart{
+			text-align: center;
+			float: left;
+			width: 20%;
+			font-size: 3vw;
+			color: #fff;
+			position: relative;
+		}
+		.cart-badge{
+			position: absolute;
+		    width: 40px;
+		    height: 40px;
+		    border-radius: 50%;
+		    background: white;
+		    color: black;
+		    font-size: 30px;
+		    line-height: 45px;
+		    font-weight: 700;
+		    top: 20px;
+		    right: 110px;
+			-webkit-box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+			-moz-box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+			box-shadow: -2px 2px 4px 4px rgba(0,0,0,0.73);
+			z-index: 10;
+		}
+		-webkit-scrollbar {
+			display: none;
+		}
+	</style>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body style="margin:0;padding:0;height:100%">
+	<div id="topTitle" style="font-family:MyNewFont;font-size:9vw;text-align:center"></div>
+
+	<div id="nevagite" style="width:86%;margin:0 auto 2% auto; padding: 0 2% 2% 2%;">
+		<div class="tab-slider">
+			<ul class="tab-items"></ul>
+		</div>
+	</div>
+
+	<div id="body" style="width:80%;margin:0 auto 0 auto;height:65%;">
+		<div class="articles fade-in" style="height:100%; overflow: scroll;">
+
+		</div>
+	</div>
+
+	<div id="foot" style="position:fixed;bottom:0;height:12%;width:100%;background-color:#000; padding-top: 15px;">
+		<div class="foot3" data-toggle="modal" data-target="#cancelTransModal" style="font-size:3vw;color:#fff;text-align:center;float:left;width:33%">
+			<span  class="glyphicon glyphicon-remove footMenu" style="width:10vw;height:10vw;line-height:11vw;margin-top:7%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Cancel</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">取消</span>
+		</div>
+		<div class="foot3" style="font-size:3vw;color:#fff;text-align:center;float:left;width:33%">
+			<span onClick="javascript:window.location.href='menu.html'" class="glyphicon glyphicon-home footMenu" style="width:10vw;height:10vw;line-height:11vw;margin-top:7%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Menu</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">菜單</span>
+		</div>
+		<div class="foot3 cart" style="font-size:3vw;color:#fff;text-align:center;float:left;width:33%">
+			<span onClick="javascript:window.location.href='cart.html'" class="glyphicon glyphicon-shopping-cart footMenu" style="width:10vw;height:10vw;line-height:11vw;margin-top:7%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Cart</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">購物車</span>
+		</div>
+	</div>
+	<div id="cancelTransModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Are you sure you want to cancel this order ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelTrans" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div id="foot" style="position:fixed;bottom:0;height:12%;width:100%;background-color:#000">
+		<div id="cancelTrans" style="text-align:center;float:left;width:33%">
+			<span  class="glyphicon glyphicon-remove"  style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div onClick="javascript:window.location.href='menu.html'" style="text-align:center;float:left;width:33%">
+			<span  class="glyphicon glyphicon-home"  style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div onClick="javascript:window.location.href='cart.html'" style="text-align:center;float:left;width:33%">
+			<span  class="glyphicon glyphicon-shopping-cart"  style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+	</div>
+	-->
+
+	<span id="prev" class="glyphicon glyphicon-chevron-left" style="position:absolute;left:2%;top:40%;width:8vw;height:8vw;line-height:8vw;font-size:6vw;color:#666;"></span>
+	<span id="next" class="glyphicon glyphicon-chevron-right" style="position:absolute;right:2%;top:40%;width:8vw;height:8vw;line-height:8vw;font-size:6vw;color:#666;"></span>
+	<script>
+
+	$(function(){
+		autoCancelTrans()
+
+		// 获得传值类型 ,传输值为 groupCode的值
+		var groupIndex = getQueryString("groupIndex")
+		var groupCode = getQueryString("groupCode")
+
+		//修改title字
+		$("#topTitle").text(titleValue[groupIndex*1-1])
+		$("#topTitle").css({
+			"color":titleColor[groupIndex*1-1]
+		})
+		// 获取当前的组
+		generateGroup(groupCode)
+		// 点击next
+		$("#next").click(function(){
+			let current_item = $('.tab-items .active');
+			let next_item = $('.tab-items .active').next();
+			if(next_item.length == 0){
+				next_item = $('.tab-items .tab-item').first();
+				$('.tab-items').scrollLeft();
+			}
+			current_item.removeClass('active');
+			next_item.addClass('active');
+			next_item.trigger('click');
+		})
+		// 点击prev
+		$("#prev").click(function(){
+			let current_item = $('.tab-items .active');
+			let prev_item = $('.tab-items .active').prev();
+			if(prev_item.length == 0){
+				prev_item = $('.tab-items .tab-item').last();
+			}
+			current_item.removeClass('active');
+			prev_item.addClass('active');
+			prev_item.trigger('click');
+		})
+		$("#cancelTrans").click(function(){
+			try{
+				var result =  JSON.parse(callHostGet("cancelTransaction"))
+				if(result.result.result=="OK"){
+					window.location.href="index.html"
+				}
+				else{
+					alert("Cancel Transaction failed,please try again")
+				}
+			}
+			catch{
+				alert("Cancel Transaction failed,please try again")
+			}
+		})
+		// Cart badge
+		let orderList = JSON.parse(callHostPost("getTransactionArticle",{data:"1"}));
+		if(orderList.itemList.length > 0){
+			$('.cart').append($('<span class="cart-badge">' + orderList.itemList.length + '</span>'))
+		}
+	})
+	$result="";  // 缓存查询出来的商品
+	// 查找出group
+	function generateGroup(groupCode)
+	{
+		var data="{\"data\":\""+groupCode+"\"}";
+		$result = JSON.parse(callHostPost("getGroups", {"data":""+groupCode+""} ) );
+		$('.tab-items').empty();
+		let len = 0;
+		for(let item of $result.items){
+			let image_data = JSON.parse(callHostPost("getArticlesFilter", { "data": item.code }));
+			if(image_data.result != 0){
+				len ++;
+				let image_path = image_data.result[0].articles[0].imageurl; // Get the image path for each group. The first item's image will be set as the group image.
+				let group_item_tab = $('<li class="tab-item" gc="' + item.code + '"></li>');
+				let item_title = $('<p class="item-title">' + item.name + '</p>');
+				let item_image = $('<img class="item-image" src="' + image_path + '" alt="item image">');
+				group_item_tab.append(item_title);
+				group_item_tab.append(item_image);
+				$('.tab-items').append(group_item_tab);
+			}
+		}
+		$('.tab-items').width((len * 175 + 10).toString() + 'px');
+		$('.tab-item:eq(0)').addClass('active');
+		generateArtielcs($('.tab-item:eq(0)').attr('gc'));
+	}
+
+	// 查询出商品
+	function generateArtielcs(groupCode)
+	{
+		$result = JSON.parse(callHostPost("getArticlesFilter",{"data":""+groupCode+""}));
+		getCurrentPageArticle(groupCode)
+	}
+	// Fetching group articles when clicking group image
+	$('.tab-items').delegate('.tab-item', 'click', function(){
+		$('.tab-item').removeClass('active');
+		$(this).addClass('active');
+		let _this = $(this);
+		$('.articles').addClass('fade-out');
+		$('.articles').removeClass('fade-in');
+		setTimeout(function(){
+			$('.articles').empty();
+			generateArtielcs(_this.attr('gc'));
+		}, 300);
+	})
+	// 分页显示商品数据
+	function getCurrentPageArticle(groupCode){
+		$index = 0;
+		$.each($result.result,function(){
+			if(this.groupid==groupCode){
+				var groupID= this.groupid;
+				$.each(this.articles,function(){
+					var imgurl=this.imageurl
+					var note1=this.notes1
+					var description = this.defaultdescription
+					var note2=this.notes2
+					var articleCode=this.articlecode
+
+					$index++;
+					// 生成每个商品的div框架
+					$div = $("<div></div>")
+					$div.css({
+						"height":"30%",
+						"width":"30%",
+						"box-shadow":"2px 2px 5px 1px rgba(117,117,117,1)",
+						"display":"inline-block",
+						"margin":"0 1.5% 2% 1.5%",
+						"text-align":"center",
+						"border-radius": "15px"
+					})
+					$div.on('click',function()
+					{
+						window.location.href="singleArticle.html?image="+imgurl+"&description="+encodeURIComponent(description)+"&note1="+encodeURIComponent(note1)+"&note2="+encodeURIComponent(note2)+"&groupID="+groupID+"&articleCode="+articleCode
+					})
+
+					// 生成商品图片
+					$img = $("<div />")
+					$img.css({
+						"background":"url("+unescape(this.imageurl)+")",
+						"background-size":"100% 100%",
+						"background-repeat":"no-repeat",
+						"width":"100%",
+						"height":"70%",
+						"border-top-left-radius": "15px",
+						"border-top-right-radius": "15px"
+					})
+					$div.append($img)
+
+					// 生成分割图片
+					$img2 = $("<div>&nbsp;</div>")
+					$img2.css({
+						"background":"url(src/img/decorator2.png)",
+						"background-size":"100% 100%",
+						"background-repeat":"no-repeat",
+						"width":"90%",
+						"height:":"15%",
+						"margin":"3% auto 3% auto"
+					})
+					$div.append($img2)
+
+					// 描述
+					$divDesc = $("<div class='description'>"+this.defaultdescription+"</div>")
+					$divDesc.css({
+						"height":"10%",
+						"width":"95%",
+						"padding":"0 2.5%",
+						"margin":"1% auto",
+						"white-space":"nowrap",
+						"overflow": "scroll",
+						'font-size': '21px',
+						'line-height': '30px',
+						"font-weight": "700",
+						"letter-spacing": "0px"
+					})
+					$div.append($divDesc);
+
+					// 价格
+					$divPrice = $("<div>$"+this.prices[0]["price"]+"</div>")
+					$divPrice.css({
+						"height":"10%",
+						"font-size":"2vw",
+						"text-align":"center",
+						"height": $divDesc.height(),
+					})
+					$div.append($divPrice);
+					$(".articles").append($div);
+					$('.articles').removeClass('fade-out');
+					$('.articles').addClass('fade-in');
+				})
+			}
+		})
+	}
+
+	var titleValue= new Array("Cold Desert","Hot Desert","Cold Drink","Hot Drink","Shaved Ice","Small Bite","Create your own","Promotion")
+	var titleColor= new Array("#77C9DB","#FF9B95","#83BF99","#CB2931","#FFB13D","#C1BFB1","#AF6137","#381410")
+
+
+	// 得到get传值
+	function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var q = window.location.pathname.substr(1).match(reg_rewrite);
+        if(r != null){
+            return unescape(r[2]);
+        }else if(q != null){
+            return unescape(q[2]);
+        }else{
+            return null;
+        }
+    }
+
+	// post ajax请求
+	function callHostPost(command, parameters) {
+		// Create the query string readimg the fields of the passed parameters object
+		var qs = '';
+		if (parameters != null) {
+			for(var key in parameters)
+	  			qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+		}
+		// Remove last ampersand
+		if (qs.length > 0)
+			qs = '?' + qs.substring(0, qs.length-1);
+
+		var request = new XMLHttpRequest();
+		// `false` makes the request synchronous
+		request.open('POST', 'http://localhost:8080/kiosk/'+command, false);
+		request.send(qs);
+
+		if (request.status === 200)
+			return request.responseText;
+		else
+			return '!error ' + request.status;
+	}
+
+	// get ajax请求
+	function callHostGet(command, parameters) {
+        // Create the query string readimg the fields of the passed parameters object
+        var qs = '';
+        if (parameters != null) {
+            for(var key in parameters)
+            qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+        }
+          // Remove last ampersand
+      	if (qs.length > 0)
+        	qs = '?' + qs.substring(0, qs.length-1);
+
+      	var request = new XMLHttpRequest();
+          // `false` makes the request synchronous
+      	request.open('GET', 'http://localhost:8080/kiosk/'+command, false);
+      	request.send(qs);
+
+      	if (request.status === 200)
+            return request.responseText;
+      	else
+            return '!error ' + request.status;
+    }
+	</script>
+</body>
+</html>

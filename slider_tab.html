@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Slider tab test</title>
+        <style>
+            body{
+
+            }
+            .slider_tab{
+                width: 90%;
+                margin: 0 auto;
+                overflow: scroll;
+            }
+            .tab_items{
+                margin: 0;
+                padding: 0;
+                height: 90px;
+            }
+            .tab_items .items{
+                list-style: none;
+                width: 100px;
+                display: inline-block;
+                text-align: center;
+            }
+            .tab_items .items .title{
+                margin: 3px 0;
+            }
+            .tab_items .items .item_image{
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slider_tab">
+            <ul class="tab_items">
+                <li class="items active">
+                    <p class="title">Title</p>
+                    <img class="item_image" width="62" height="62" src="src/img/p1.jpg" alt="item image" />
+                </li>
+                <li class="items">
+                    <p class="title">Title</p>
+                    <img class="item_image" width="62" height="62" src="src/img/p1.jpg" alt="item image" />
+                </li>
+                <li class="items">
+                    <p class="title">Title</p>
+                    <img class="item_image" width="62" height="62" src="src/img/p1.jpg" alt="item image" />
+                </li>
+                <li class="items">
+                    <p class="title">Title</p>
+                    <img class="item_image" width="62" height="62" src="src/img/p1.jpg" alt="item image" />
+                </li>
+                <li class="items">
+                    <p class="title">Title</p>
+                    <img class="item_image" width="62" height="62" src="src/img/p1.jpg" alt="item image" />
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script src="dist/JS/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.tab_items').width( '520px' )
+    </script>
+</html>

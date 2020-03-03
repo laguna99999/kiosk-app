@@ -1,0 +1,176 @@
+@defaultHeight:100%; /*????*/
+@payModuleWidth:80%; /*??????*/
+@payModuleHeight:24%; /*??????*/
+@titleFontSize:9vw; /*title????*/
+@imgUrl:"../../../src/img"; /*title????*/
+
+html{
+	height:@defaultHeight
+
+}
+
+body{
+	margin:0;
+	padding:0;
+	height:@defaultHeight
+}
+
+/*ͷ��css*/
+#topTitle{
+	height:10%;
+	font-family:MyNewFont;
+	font-size:@titleFontSize;
+	text-align:center;
+}
+
+/*??????*/
+.payTypeDiv{
+	width:@payModuleWidth;
+	height:@payModuleHeight;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	box-shadow:5px 5px 5px #888888;
+	margin:2% auto 0 auto;
+	overflow:hidden
+}
+
+/*???????title*/
+.payTitle
+{
+	height:15%;
+	font-size:4.5vw;
+	text-align:center;
+	margin-bottom:1.25%; /*10*/
+	margin-top:1.25%; /*5*/
+}
+
+/*?????*/
+.payMiddleCommon
+{
+	width:75%;
+	height:40%;
+	margin:0 auto;
+}
+
+/*????*/
+.imgLoop(@payMoudleCnt) when (@payMoudleCnt > 0) {
+	  .imgLoop((@payMoudleCnt - 1));
+	  .middle@{payMoudleCnt} {
+			background:url("@{imgUrl}/payment@{payMoudleCnt}.png");
+		  	background-size:100% 100%;
+			background-repeat:no-repeat;
+			.payMiddleCommon();
+	  }
+}
+
+/*??????*/
+.footLoop(@payMoudleCnt) when (@payMoudleCnt > 0) {
+		.footLoop((@payMoudleCnt - 1));
+		& when(@payMoudleCnt = 2)
+		{
+			.payFoot@{payMoudleCnt}{
+				height:15%;
+				text-align:center;
+				font-size:3.5vw;
+				margin-top:2.5% /*10*/
+			}
+		};
+		& when not(@payMoudleCnt = 2)
+		{
+			.payFoot@{payMoudleCnt}{
+				height:15%;
+				text-align:center;
+				font-size:3.5vw;
+				margin-top:5% /*10*/
+			}
+		}
+}
+
+body
+{
+	.imgLoop(3);
+	.footLoop(3);
+}
+
+#foot
+{
+	position:fixed;
+	bottom:0;
+	height:12%;
+	width:100%;
+	background-color:#000
+}
+
+.foot3
+{
+	text-align:center;
+	float:left;
+	width:33%
+}
+
+.footMenu
+{
+	width:10vw;
+	height:10vw;
+	line-height:10vw;
+	margin-top:12%;
+	margin-bottom: 2%;
+	font-size:6vw;
+	color:black;
+	background:white;
+	-webkit-border-radius: 100% 100% 100% 100%;
+}
+.footMenuWord{
+	font-size: 30px;
+}
+.foot3
+{
+	font-size:3vw;
+	color:#fff;
+}
+
+/*********************隐藏div waitting的提示******************************/
+
+#hiddenDiv{
+	display:none;
+	position:absolute;
+	left:0;
+	top:0;
+	width:80%;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	font-size:10vw;
+	text-align:center;
+	color:#fff;
+	background-color:black;
+	opacity:0.8;
+	.hiddenDivInnerDiv
+	{
+		height:100%;
+	};
+	#forScan
+	{
+		display:none;
+	};
+	#forspoonityAlipay{
+		display:none;
+		font-size:10vw;
+	};
+	#forClover
+	{
+		#CloverWaitting
+		{
+			height:50%;
+			font-size:8vw;
+		};
+		#arrow
+		{
+			height:50%;
+			font-size:3vw;
+		}
+	};
+}
+
+.hiddenDivInnerDiv{
+	position:relative
+}

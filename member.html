@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head >
+	<link rel="stylesheet" href="dist/CSS/myFont.css">
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<link rel="stylesheet" href="dist/CSS/msgbox.css" />
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+	<script src="dist/JS/jquery.idledetection.js"></script>
+	<script type="text/javascript" src="dist/JS/msgbox.js"></script>
+
+	<script type="text/javascript" src="dist/JS/myFunc.js"></script>
+	<style>
+		.modal .modal-dialog{
+			margin: 29vh auto;
+		}
+		.modal .modal-body{
+			padding: 10vw;
+		}
+		.modal .modal-body p{
+			font-size: 5vw;
+			text-align: center;
+		}
+		.modal .modal-footer{
+			display: flex;
+			justify-content: space-evenly;
+			padding: 20px;
+		}
+		.modal .modal-footer button{
+			padding: 15px 80px;
+			font-size: 35px;
+		}
+	</style>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body style="height:100%">
+	<div id="topTitle" style="height:10%;font-family:MyNewFont;font-size:9vw;padding-top:5%;text-align:center">Are you a member?</div>
+	<div style="width:80%;height:33.5%;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:5px 5px 5px #888888;margin:0 auto">
+		<div style="font-size:5vw;text-align:center;margin-top:7%;margin-bottom:2%">Member Login</div>
+		<div style="width:65%;height:45%;margin:0 auto;background:url(src/img/barcode.png);background-size:100% 100%;background-repeat:no-repeat;"></div>
+		<div style="text-align:center;font-size:3vw;margin-top:5%">Scan your</div>
+		<div style="text-align:center;font-size:3vw">membership barcode</div>
+	</div>
+	<div onclick="javascript:location.href='payment.html'" style="width:80%;height:33.5%;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:5px 5px 5px #888888;margin:5% auto 0 auto">
+		<div style="font-size:5vw;text-align:center;margin-top:10%;margin-bottom:5%">Non-Member</div>
+		<div  style="width:20%;height:30%;margin:0 auto;text-align:center;background:url(src/img/pic.png);background-size:100% 100%;background-repeat:no-repeat;"></div>
+		<div style="font-size:3vw;text-align:center;margin-top:15%">Join later</div>
+	</div>
+
+	<div id="foot" style="position:fixed;bottom:0;height:10%;width:100%;background-color:#000">
+		<div style="text-align:center;float:left;width:33%">
+			<span  data-toggle="modal" data-target="#cancelTransModal" class="glyphicon glyphicon-remove" style="width:10vw;height:10vw;line-height:10vw;margin-top:12%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div style="text-align:center;float:left;width:33%" onClick="javascript:window.location.href='menu.html'">
+			<span class="glyphicon glyphicon-home" style="width:10vw;height:10vw;line-height:10vw;margin-top:12%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div style="text-align:center;float:left;width:33%" onClick="javascript:history.back(-1)">
+			<span class="glyphicon glyphicon-arrow-left" style="width:10vw;height:10vw;line-height:10vw;margin-top:12%;font-size:6vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+	</div>
+	<div id="cancelTransModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Are you sure you want to cancel this order ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelTrans" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(function(){
+		autoCancelTrans()
+
+		$barcode="";
+		$(document).on("keypress",function(e){
+			if(window.event){
+				$barcode+=String.fromCharCode(e.keyCode).replace(/[\x00-\x1f]+/g, '');
+            } else if(e.which){
+				$barcode+=String.fromCharCode(e.which);
+            }
+			if(e.keyCode==13)
+			{
+			console.log(ZENG)
+
+				console.log("123123")
+				// 去后台请求
+				var result = JSON.parse(callHostPost("parameterLogin",  {data : $barcode}) )
+				if(result.resultCode==0)
+				{
+					window.location.href="payment.html"
+				}
+				else
+				{
+					alert("Login failed please try again.")
+				}
+			}
+		})
+
+		$("#cancelTrans").click(function(){
+
+			try
+			{
+				var result =  JSON.parse(callHostGet("cancelTransaction"))
+				if(result.result.result=="OK")
+				{
+					window.location.href="index.html"
+				}
+				else
+				{
+					console.log("Cancel Transaction failed,please try again")
+				}
+				$barcode="";
+			}
+			catch
+			{
+				console.log("Cancel Transaction failed,please try again")
+			}
+		})
+	})
+
+	function callHostPost(command, parameters) {
+		// Create the query string readimg the fields of the passed parameters object
+		var qs = '';
+		  if (parameters != null) {
+			for(var key in parameters)
+			  qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+		  }
+		  // Remove last ampersand
+		  if (qs.length > 0)
+			qs = '?' + qs.substring(0, qs.length-1);
+
+		  var request = new XMLHttpRequest();
+		  // `false` makes the request synchronous
+		  request.open('POST', 'http://localhost:8080/kiosk/'+command, false);
+		  request.send(qs);
+
+		  if (request.status === 200)
+			return request.responseText;
+		  else
+			return '!error ' + request.status;
+		}
+	</script>
+</body>
+</html>

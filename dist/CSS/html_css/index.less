@@ -1,0 +1,75 @@
+@defaultHeight:100%;
+@imgUrl:"../../../src/img/"; /*图片路径*/
+
+html{
+	height:@defaultHeight
+}
+
+body{
+	width:@defaultHeight;
+	height:@defaultHeight;
+	background:url("@{imgUrl}/HOME.png");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+}
+
+#foot
+{
+	position:fixed;
+	width:100%;
+	bottom:0;
+	height:15%;
+	background-color:#000;
+	text-align:center;
+	.foot_menu_div
+	{
+		float:left;
+		width:50%;
+		height:80%;
+		.foot_menu
+		{
+			width:90%;
+			height:70%;
+			margin-top: 65px;
+			background:#000;
+			border:3px solid white;
+			font-size:50px;
+			right:0
+		}
+	}
+}
+
+.MClick
+{
+	position:absolute;
+	width:10%;
+	height:10%;
+	//border:1px solid red;
+	top:0
+}
+
+#LClick
+{
+	.MClick();
+	left:0;
+	z-index: 1;
+}
+
+#RClick
+{
+	.MClick();
+	right:0;
+	z-index: 1;
+}
+.logo{
+	position: absolute;
+	z-index: 1;
+	top: 180px;
+	left: 250px;
+}
+.background{
+	position: absolute;
+	z-index: 0;
+}

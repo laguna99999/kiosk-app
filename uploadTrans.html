@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head >
+	<link rel="stylesheet" href="dist/CSS/myFont.css">
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+	<script src="dist/JS/myFunc.js"></script>
+
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body style="height:100%;background:url(src/img/background.jpg);background-size:100% 100%;background-repeat:no-repeat">
+	<div id="topTitle" style="padding-top:5%;height:10%;font-family:MyNewFont;font-size:9vw;text-align:center">Update The Points</div>
+	
+	<div class="payTypeDiv" style="width:70%;height:30%;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:5px 5px 10px #888888;margin:20% auto 0 auto">
+		<div style="height:20%;font-size:5vw;text-align:center;margin-top:3%;margin-bottom:3px">Scan Barcode</div>
+		<div style="width:65%;height:34%;margin:0 auto;">
+			<div style="width:100%;height:100%;margin:0 auto;background:url(src/img/barcode.png);background-size:100% 100%;background-repeat:no-repeat;"></div>
+		</div>
+		
+		<div style="height:30%;text-align:center;font-size:3vw;margin-top:5%">Scan The Barcode In Your Receipt</div>
+	</div>
+
+	<div id="foot" style="position:fixed;bottom:0;height:13%;width:100%;background-color:#000">
+		<div id="back" onClick="javascript:window.location.href='index.html'" style="text-align:center;color:white;;font-weigth:900;font-size:5vw;width:30%;height:30%;margin:7% auto 0 auto;border:3px solid white">
+			Back
+		</div>
+	</div>
+	
+	<script>
+	$(function(){
+		autoCancelTrans()
+		
+		$("#back").css({
+			"height":$("#foot").height()*0.6+"px",
+			"margin-top":$("#foot").height()*0.2+"px",
+			"line-height":$("#foot").height()*0.6+"px"
+		})
+		
+		$barcode="";
+		$(document).on("keypress",function(e){
+			if(window.event)
+			{
+				if(e.keyCode!=13)
+				{
+					$barcode+=String.fromCharCode(e.keyCode);
+				}
+            } 
+			else if(e.which)
+			{
+				if(e.which!=13)
+				{
+					$barcode+=String.fromCharCode(e.keyCode);
+				}
+            }
+			
+			if(e.keyCode==13)
+			{
+				try
+				{
+					var result = JSON.parse(callHostPost("uploadPoints",  {data : $barcode}) )
+
+					if(result.resultCode==0)
+					{
+						window.location.href="last_upload.html"
+					}
+					else
+					{
+						alert("Upload failed please try again.")
+					}
+				}
+				catch
+				{
+					alert("Upload failed please try again.")
+				}
+				$barcode="";
+			}
+		})
+	})
+	
+	function callHostPost(command, parameters) {
+		// Create the query string readimg the fields of the passed parameters object
+		var qs = '';
+		  if (parameters != null) {
+			for(var key in parameters)
+			  qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+		  }
+		  // Remove last ampersand
+		  if (qs.length > 0)
+			qs = '?' + qs.substring(0, qs.length-1);
+
+		  var request = new XMLHttpRequest();
+		  // `false` makes the request synchronous
+		  request.open('POST', 'http://localhost:8080/kiosk/'+command, false);
+		  request.send(qs);
+
+		  if (request.status === 200)
+			return request.responseText;
+		  else
+			return '!error ' + request.status;
+		}
+	</script>
+</body>
+</html>

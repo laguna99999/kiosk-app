@@ -1,0 +1,85 @@
+@defaultHeight:100%; 
+@imgUrl:"../../../src/img/"; /*图片路径*/
+
+html{
+	height:@defaultHeight
+}
+
+body{
+	width:@defaultHeight;
+	height:@defaultHeight;
+	background:url("@{imgUrl}/background.jpg");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+}
+
+#titleImg
+{
+	padding-top:8%;
+	padding-bottom:3%;
+	height:19%;
+	text-align:center
+}
+
+.titleTxt
+{
+	text-align:center;
+	font-size:4vw;
+	font-weight:550
+}
+
+#titleText
+{
+	padding-top:20%;
+	text-align:center;
+	font-size:5vw;
+	font-weight:550
+}
+
+#resultDiv
+{
+	height:5%;
+	text-align:center;
+	font-size:5vw;
+	width:60%;
+	margin:5% auto 0  auto;
+	border-bottom:2px solid #000;
+}
+
+#keyBoardDiv
+{
+	width:70%;
+	height:51;
+	margin:0 auto;
+	.keyBoardLine
+	{
+		margin:5% 0 0 0;
+		height:17%;
+		.col
+		{
+			display:inline-block;
+			width:32%;
+		}
+	}
+}
+
+.EnterOrLogin
+{
+	width:40%;
+	margin:5% auto;
+	color:#EB9239;
+	border:2px solid #EB9239
+}
+
+#Login{
+	display:none;
+}
+
+
+
+
+
+
+

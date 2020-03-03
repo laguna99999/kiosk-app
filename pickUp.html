@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app style="height:100%">
+  <head>
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+		<link rel="stylesheet/less" type="text/css" href="dist/CSS/html_css/pickUp.less">
+
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+    <script src="dist/JS/jquery.idledetection.js"></script>
+	<script src="dist/JS/myFunc.js"></script>
+	<script src="dist/JS/less.min.js"></script>
+	<script src="dist/JS/html_js/pickUp.js"></script>
+  </head>
+  <body>
+	<div id="titleImg">
+		<img style="height:100%" src="src/img/2.png"/>
+	</div>
+	<div class="titleTxt" >
+		Pick up Your Pager
+	</div>
+	<div class="titleTxt">
+		& Enter the number
+	</div>
+
+	<div id="resultDiv">
+		<b id="result" ></b>
+	</div>
+
+	<div id="keyBoardDiv" >
+		<div class="keyBoardLine">
+			<div class="col">
+				1
+			</div>
+			<div class="col">
+				2
+			</div>
+			<div class="col">
+				3
+			</div>
+		</div>
+		<div class="keyBoardLine">
+			<div class="col">
+				4
+			</div>
+			<div class="col">
+				5
+			</div>
+			<div class="col">
+				6
+			</div>
+		</div>
+		<div class="keyBoardLine">
+			<div class="col">
+				7
+			</div>
+			<div class="col">
+				8
+			</div>
+			<div class="col">
+				9
+			</div>
+		</div>
+		<div class="keyBoardLine">
+			<div class="col">
+				<b >&nbsp;</b>
+			</div>
+			<div class="col">
+				0
+			</div>
+			<div id="cancel" class="col">
+				<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div id="enter" class="EnterOrLogin">
+			ENTER
+		</div>
+	</div>
+
+	<div class="modal fade" tabindex="-1" id="mydialog" role="dialog"></div>
+	<script>
+	$(function(){
+		autoCancelTrans();
+		$("#enter").click(function(){
+			var result = callHostPost("addPageNumber", {"data": $("#result").text()});
+			console.log(result)
+			try
+			{
+				if(JSON.parse(result)["resultCode"]==0)
+				{
+					window.location.href="menu.html";
+				}
+			}
+			catch(err)
+			{
+				// �쳣�����糬ʱ��
+				alert("System Error Please Try Again");
+			}
+		})
+	})
+
+
+	</script>
+  </body>
+</html>

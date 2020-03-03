@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+	<link rel="stylesheet" href="dist/CSS/bootstrap.css">
+	<script src="dist/JS/jquery.min.js"></script>
+	<script src="dist/JS/bootstrap.min.js"></script>
+	<script src="dist/JS/jquery.idledetection.js"></script>
+	<script src="dist/JS/myFunc.js"></script>
+
+    <link rel="stylesheet" href="dist/CSS/myFont.css">
+	<style>
+		.modal .modal-dialog{
+			margin: 29vh auto;
+		}
+		.modal .modal-body{
+			padding: 10vw;
+		}
+		.modal .modal-body p{
+			font-size: 5vw;
+			text-align: center;
+		}
+		.modal .modal-footer{
+			display: flex;
+			justify-content: space-evenly;
+			padding: 20px;
+		}
+		.modal .modal-footer button{
+			padding: 15px 80px;
+			font-size: 35px;
+		}
+	</style>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body style="margin:0;padding:0;height:100%">
+	<div id="topTitle" style="font-family:MyNewFont;font-size:9vw;padding-top:3%;text-align:center">Confirm Your Order</div>
+
+	<div id="div1" style="width:80%;height:20%;margin:0 auto;font-size:3.5vw">
+		<table class="table table-striped">
+			<thead style="border-bottom:2px solid #bbb">
+				<tr>
+					<td style="width:40%;text-align:center;color:#EB9239">Item</td>
+					<td style="width:40%;text-align:left;color:#EB9239">Topping</td>
+					<td style="width:20%;text-align:left;color:#EB9239">Price</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+			<tfoot>
+				<tr>
+					<td style="width:40%;text-align:center;color:#EB9239"></td>
+					<td style="width:20%;text-align:left;color:#EB9239"></td>
+					<td style="width:40%;text-align:left;">
+						<span style="color:#EB9239">Total</span>
+						<span id="totalAmount" style="font-size:3vw;color:#AAA"></span>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+	<div id="foot" style="position:fixed;bottom:0;height:12%;width:100%;background-color:#000">
+		<div data-toggle="modal" data-target="#cancelTransModal" class="foot3" style="font-size:3vw;color:#fff;text-align:center;float:left;width:25%">
+			<span  class="glyphicon glyphicon-remove footMenu" style="width:10vw;height:10vw;line-height:10vw;margin-top:15%;font-size:5vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Cancel</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">取消</span>
+		</div>
+		<div class="foot3" onClick="javascript:history.back(-1)" style="font-size:3vw;color:#fff;text-align:center;float:left;width:25%">
+			<span  class="glyphicon glyphicon-arrow-left footMenu" style="width:10vw;height:10vw;line-height:10vw;margin-top:15%;font-size:5vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Back</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">返回</span>
+		</div>
+		<div class="foot3" style="font-size:3vw;color:#fff;text-align:center;float:left;width:25%">
+			<span onClick="javascript:window.location.href='menu.html'" class="glyphicon glyphicon-shopping-cart footMenu" style="width:10vw;height:10vw;line-height:10vw;margin-top:15%;font-size:5vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Menu</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">菜單</span>
+		</div>
+		<div class="foot3" style="font-size:3vw;color:#fff;text-align:center;float:left;width:25%">
+			<span id="topay" onClick="javascript:window.location.href='menu.html'" class="glyphicon glyphicon-check footMenu" style="width:10vw;height:10vw;line-height:10vw;margin-top:15%;font-size:5vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+			<br/>
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">Pay</span> |
+			<span class="footMenuWord" style="line-height: 60px; font-size: 30px;">結帳</span>
+		</div>
+	</div>
+	<div id="cancelTransModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Are you sure you want to cancel this order ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelTrans" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div id="foot" style="position:fixed;bottom:0;height:10%;width:100%;background-color:#000">
+		<div style="text-align:center;float:left;width:25%">
+			<span id="cancelTrans" class="glyphicon glyphicon-remove" style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div style="text-align:center;float:left;width:25%" onClick="javascript:history.back(-1)">
+			<span class="glyphicon glyphicon-arrow-left" style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div style="text-align:center;float:left;width:25%" onClick="javascript:window.location.href='menu.html'">
+			<span class="glyphicon glyphicon-home" style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+		<div id="topay"  style="text-align:center;float:left;width:25%">
+			<span class="glyphicon glyphicon-check" style="width:11vw;height:11vw;line-height:11vw;margin-top:12%;font-size:8vw;color:black; background:white;-webkit-border-radius: 100% 100% 100% 100%;"></span>
+		</div>
+	</div>
+	-->
+
+	<script>
+	$(function(){
+		autoCancelTrans()
+
+		var orderList = JSON.parse(callHostPost("getTransactionArticle",{data:"1"}))
+		console.log(callHostPost("getTransactionArticle",{data:"1"}))
+		$totalPrice=0
+		$.each(orderList.itemList,function(){
+			$articleItemID=this.itemid
+			$price=0;
+			$tr = $("<tr></tr>")
+
+			// td1添加
+			$price+=this.price*1; // 计算price
+			$totalPrice+=this.price*1 // 计算total的price
+
+			$td1 = $("<td style='width:40%;font-size:2.0vw'><span price='"+this.price+"' articleCode='"+this.itemid+"' onclick='javascript:removeArticle("+this.itemid+",this)' class='glyphicon glyphicon-remove-circle' style='color:#EB9239;font-size:2.5vw;margin-right:5%'></span>"+this.description+"&nbsp;&nbsp;&nbsp;$"+this.price+"</td>")
+
+			$tr.append($td1) //把td添加到tr
+
+			// td2添加
+			$td2=$("<td style='width:40%;font-size:2.0vw'></td>")
+			$.each(this.subItems,function(){
+				$price+=this.price*1; // 计算price
+				$totalPrice+=this.price*1 // 计算total的price
+				$td2Div =$("<div style='margin-bottom:5%'><span onclick='javascript:removeSubArticle("+$articleItemID+","+this.itemid+",this)' class='glyphicon glyphicon-remove-circle' price='"+this.price+"'  articleCode='"+this.itemid+"' style='color:#EB9239;font-size:2.5vw;margin-right:5%'></span>"+this.description+"</div>")
+				$td2.append($td2Div);
+			})
+			$tr.append($td2) //把td添加到tr
+
+			// td3 添加
+			$td3=$("<td style='width:20%;font-size:2.0vw'>$"+$price+"</td>")
+			$tr.append($td3) //把td添加到tr
+
+			$("tbody:eq(0)").append($tr)
+		})
+
+		$("#totalAmount").text($totalPrice)
+
+		$("#cancelTrans").click(function(){
+			try
+			{
+				var result =  JSON.parse(callHostGet("cancelTransaction"))
+				if(result.result.result=="OK")
+				{
+					window.location.href="index.html"
+				}
+				else
+				{
+					console.log("Cancel Transaction failed,please try again")
+				}
+			}
+			catch
+			{
+				console.log("Cancel Transaction failed,please try again")
+			}
+		})
+
+		$("#topay").click(function(){
+			if($("#totalAmount").text()*1!=0)
+			{
+				window.location.href="member.html"
+			}
+		})
+	})
+
+	function removeArticle(itemID,obj)
+	{
+		try
+		{
+			var result = JSON.parse(callHostPost("removeItem",  {itemID : itemID}) );
+			$("#totalAmount").text(result.result.totalAmount)
+			obj.parentNode.parentNode.remove();
+		}
+		catch
+		{
+			alert("Remove item failed,please try again.")
+		}
+	}
+
+	function removeSubArticle(itemID,subItemID,obj)
+	{
+		try
+		{
+			var jsonData={}
+			jsonData.itemID=itemID;
+			jsonData.subItemID=subItemID
+
+			var result = JSON.parse(callHostPost("removeAdditioal",  {data : JSON.stringify(jsonData)}) );
+			console.log(result)
+			$("#totalAmount").text(result.resultCode)
+			obj.parentNode.remove();
+		}
+		catch
+		{
+			alert("Remove item failed,please try again.")
+		}
+	}
+
+	// post ajax请求
+	function callHostPost(command, parameters) {
+		// Create the query string readimg the fields of the passed parameters object
+		var qs = '';
+		  if (parameters != null) {
+			for(var key in parameters)
+			  qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+		  }
+		  // Remove last ampersand
+		  if (qs.length > 0)
+			qs = '?' + qs.substring(0, qs.length-1);
+
+		  var request = new XMLHttpRequest();
+		  // `false` makes the request synchronous
+		  request.open('POST', 'http://localhost:8080/kiosk/'+command, false);
+		  request.send(qs);
+
+		  if (request.status === 200)
+			return request.responseText;
+		  else
+			return '!error ' + request.status;
+		}
+
+	// get ajax请求
+	function callHostGet(command, parameters) {
+            // Create the query string readimg the fields of the passed parameters object
+            var qs = '';
+              if (parameters != null) {
+                for(var key in parameters)
+                  qs += encodeURIComponent(key) + '=' + encodeURIComponent(parameters[key]) + '&';
+              }
+              // Remove last ampersand
+              if (qs.length > 0)
+                qs = '?' + qs.substring(0, qs.length-1);
+
+              var request = new XMLHttpRequest();
+              // `false` makes the request synchronous
+              request.open('GET', 'http://localhost:8080/kiosk/'+command, false);
+              request.send(qs);
+
+              if (request.status === 200)
+                return request.responseText;
+              else
+                return '!error ' + request.status;
+            }
+	</script>
+</body>
+</html>
