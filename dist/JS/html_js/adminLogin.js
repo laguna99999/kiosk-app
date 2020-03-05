@@ -52,7 +52,9 @@ $(function(){
 	$("#goBack").click(function(){
 		history.back(-1)
 	})
-
+    $("#register").click(function(){
+        window.location.href = 'adminRegister.html';
+    })
 	$employeeNumber =""; // Ա����
 	$employeePassword =""; // Ա������
 	$("#enter").click(function(){
@@ -70,34 +72,34 @@ $(function(){
 	$("#Login").click(function(){
 		$isUsername=1;
 		$employeePassword = $("#result").attr("realStr")
-		var result = callHostPost("employeeLogin", {"data": $employeeNumber,"password":$employeePassword});
-		console.log(result);
-		try
-		{
-			if(JSON.parse(result)["resultCode"]==0)
-			{
-				window.location.href="managerFunc.html";
-			}
-			else
-			{
-				$("#titleText").text("EMPLOYEE NUMBER")
-				$("#enter").show();
-				$("#Login").hide();
-				$("#result").text("")
-				$("#result").attr("realStr","")
-				showDialog("Login Failed");
-			}
-		}
-		catch(err)
-		{
-			$("#titleText").text("EMPLOYEE NUMBER")
-			$("#enter").show();
-			$("#Login").hide();
-			$("#result").text("")
-			$("#result").attr("realStr","")
-			// �쳣�����糬ʱ��
-			showDialog("System Error Please Try Again");
-		}
+		// var result = callHostPost("employeeLogin", {"data": $employeeNumber,"password":$employeePassword});
+		// console.log(result);
+		// try
+		// {
+		// 	if(JSON.parse(result)["resultCode"]==0)
+		// 	{
+		// 		window.location.href="managerFunc.html";
+		// 	}
+		// 	else
+		// 	{
+		// 		$("#titleText").text("EMPLOYEE NUMBER")
+		// 		$("#enter").show();
+		// 		$("#Login").hide();
+		// 		$("#result").text("")
+		// 		$("#result").attr("realStr","")
+		// 		showDialog("Login Failed");
+		// 	}
+		// }
+		// catch(err)
+		// {
+		// 	$("#titleText").text("EMPLOYEE NUMBER")
+		// 	$("#enter").show();
+		// 	$("#Login").hide();
+		// 	$("#result").text("")
+		// 	$("#result").attr("realStr","")
+		// 	// �쳣�����糬ʱ��
+		// 	showDialog("System Error Please Try Again");
+		// }
 	})
 })
 

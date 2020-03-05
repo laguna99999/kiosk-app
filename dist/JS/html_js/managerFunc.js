@@ -2,19 +2,23 @@ $hasPasswordShow=0;
 $hasPairShow =0;
 $hasSuccessShow =0;
 var	SecondCountDown;
+
 $(function(){
 	autoCancelTrans();
 	$("#mydialog").load("dialogModel.html")
-	
+
 	$('#mydialog').on('hidden.bs.modal', function (e) {
 	  $(".modal-backdrop").hide()
 	})
-	
-	// µã»÷reload
+	// Close browser
+	$('.close-button').click(function(){
+		window.open(window.locaiton, '_blank');
+	})
+	// ï¿½ï¿½ï¿½ï¿½reload
 	$("#reloadBTN").click(function(){
 		try
 		{
-			var result = JSON.parse(callHostPost("reload", {"data":"1"})); 
+			var result = JSON.parse(callHostPost("reload", {"data":"1"}));
 			if(result.resultCode==0)
 			{
 				showDialog("Reloaded.")
@@ -22,17 +26,16 @@ $(function(){
 			else
 			{
 				showDialog("Reload Failed.")
-			
 			}
 		}
 		catch
 		{
-			console.log("Êý¾Ý¸ñÊ½·µ»Ø´íÎó");
+			console.log("ï¿½ï¿½ï¿½Ý¸ï¿½Ê½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½");
 			showDialog("Reload Failed.")
 		}
 	})
-	
-	// µã»÷Á¬½Ó°´Å¥
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½Å¥
 	$("#connectCloverBTN").click(function(){
 		$hasPasswordShow=0;
 		$hasPairShow =0;
@@ -45,7 +48,7 @@ $(function(){
 		}
 		try
 		{
-			var result = JSON.parse(callHostPost("connectClover", {"data":"1"})); 
+			var result = JSON.parse(callHostPost("connectClover", {"data":"1"}));
 			console.log(result)
 			if(result.resultCode==1)
 			{
@@ -58,7 +61,7 @@ $(function(){
 		}
 		catch
 		{
-			console.log("Êý¾Ý¸ñÊ½·µ»Ø´íÎó");
+			console.log("ï¿½ï¿½ï¿½Ý¸ï¿½Ê½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½");
 			showDialog("Reload Failed.")
 		}
 	})
@@ -70,7 +73,7 @@ $(function(){
 	$("#printLast").click(function(){
 		try
 		{
-			var result = JSON.parse(callHostPost("lastPrint", {"data":"1"})); 
+			var result = JSON.parse(callHostPost("lastPrint", {"data":"1"}));
 			if(result.resultCode == 0)
 			{
 				showDialog("success")
@@ -85,12 +88,12 @@ $(function(){
 			showDialog("Print Failed.")
 		}
 	})
-	
+
 	$("#refund").click(function(){
 		window.location.href="keyBoard.html?func=refund"
 	})
 
-	// µã»÷·µ»Ø°´Å¥
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 	$("#backToIndex").click(function(){
 		location.href="index.html"
 	})
@@ -103,7 +106,7 @@ function sleep(delay) {
   }
 }
 
-// ²éÑ¯Á¬½Ó×´Ì¬
+// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½×´Ì¬
 function getConnectStatuesTimeOut()
 {
 	SecondCountDown = setInterval(function(){getConnectStatues()}, 2000);
@@ -114,9 +117,9 @@ function getConnectStatues()
 	var returnCode = 0;
 	try
 	{
-		var result = JSON.parse(callHostPost("getConnectType", {"data":"1"})); 
+		var result = JSON.parse(callHostPost("getConnectType", {"data":"1"}));
 		console.log(result)
-		
+
 		if(result.hasReady=="0" && result.hasConnect=="1" && result.pairCode=="0")
 		{
 			if($hasPasswordShow==0)
@@ -127,7 +130,7 @@ function getConnectStatues()
 				$(".modal-backdrop").hide();
 				sleep(300)
 				showDialog("Enter Password in Clover");
-				returnCode = 1 ; // ÌáÊ¾ÊäÈëcloverÃÜÂë
+				returnCode = 1 ; // ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½cloverï¿½ï¿½ï¿½ï¿½
 			}
 		}
 		else if(result.pairCode!="0" && result.hasReady=="0")
@@ -139,7 +142,7 @@ function getConnectStatues()
 				$("#mydialog").modal('hide')
 				sleep(300)
 				showDialog("Pair code :"+result.pairCode);
-				returnCode = result.pairCode; // ÌáÊ¾ÊäÈëpairÃÜÂë
+				returnCode = result.pairCode; // ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½pairï¿½ï¿½ï¿½ï¿½
 			}
 		}
 		else if(result.hasReady!=0)
@@ -150,12 +153,12 @@ function getConnectStatues()
 				$("#mydialog").modal('hide');
 								sleep(300)
 				showDialog("Connect Success");
-				returnCode = 2 ; // ±íÊ¾Á¬½Ó³É¹¦
+				returnCode = 2 ; // ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó³É¹ï¿½
 			}
 		}
 		else
 		{
-			returnCode = 3; // Î´Á¬½Ó 
+			returnCode = 3; // Î´ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 	catch

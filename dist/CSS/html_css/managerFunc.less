@@ -1,6 +1,6 @@
-@defaultHeight:100%; 
+@defaultHeight:100%;
 @funcWidth:60%;
-@funcHeight:15%; 
+@funcHeight:15%;
 @imgUrl:"../../../src/img/"; /*图片路径*/
 
 html{
@@ -16,7 +16,9 @@ body{
 	margin:0;
 	padding:0;
 }
-
+.content{
+	padding-top: 300px;
+}
 .funcBtn
 {
 	width:@funcWidth;
@@ -28,4 +30,12 @@ body{
 		width:@defaultHeight;
 		height:@defaultHeight;
 	}
+}
+.close-button{
+	position: absolute;
+    top: 80px;
+    right: 60px;
+}
+.close-button i{
+	font-size: 80px;
 }

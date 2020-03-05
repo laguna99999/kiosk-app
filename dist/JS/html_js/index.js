@@ -38,10 +38,22 @@ $(function(){
 			window.location.href="managerLogin.html";
 		}
 	});
+	$(".adminBtn").click(function(){
+		$index = $(".adminBtn").index($(this));
+		if($index==0){
+			$LBtn = Date.parse(new Date())/1000;
+		}
+		else{
+			$RBtn = Date.parse(new Date())/1000;
+		}
+		if(Math.abs($LBtn-$RBtn) <=5){
+			window.location.href="adminLogin.html";
+		}
+	});
 	let idx = 2;
 	setInterval(function(){
 		$('.background').attr('src', 'src/img/bg' + idx + '.jpg');
-		if(idx < 5){
+		if(idx < 3){
 			idx ++;
 		}else{
 			idx = 1;
