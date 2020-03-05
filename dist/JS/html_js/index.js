@@ -28,18 +28,13 @@ $(function(){
 	$RBtn = 0; // ��ʾ���ఴť�Ƿ񱻵���
 	$(".managermentBtn").click(function(){
 		$index = $(".managermentBtn").index($(this));
-		console.log($index)
-		if($index==0)
-		{
+		if($index==0){
 			$LBtn = Date.parse(new Date())/1000;
 		}
-		else
-		{
+		else{
 			$RBtn = Date.parse(new Date())/1000;
 		}
-
-		if(Math.abs($LBtn-$RBtn) <=5)
-		{
+		if(Math.abs($LBtn-$RBtn) <=5){
 			window.location.href="managerLogin.html";
 		}
 	});
