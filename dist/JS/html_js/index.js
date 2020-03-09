@@ -47,7 +47,7 @@ $(function(){
 			$RBtn = Date.parse(new Date())/1000;
 		}
 		if(Math.abs($LBtn-$RBtn) <=5){
-			window.location.href="adminLogin.html";
+			window.location.href="admin.html";
 		}
 	});
 	let idx = 2;
