@@ -1,0 +1,68 @@
+body{
+    background-image: url('../../src/img/background.jpg');
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.header{
+    margin: 5vh auto;
+    border-bottom: 2px solid #afafaf;
+}
+.header h3{
+    text-align: center;
+    font-size: 4vh;
+    font-weight: 600;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: transparent;
+    margin-bottom: 30px;
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.card img{
+    height: 15vh;
+}
+.card .card-body{
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+}
+.card .card-text{
+    width: 100%;
+    font-size: 45px;
+    text-align: center;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 11vh;
+    left: 0;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.footer p{
+    font-size: 30px;
+    text-align: center;
+}
+.footer .footer-item{
+    text-align: center;
+    padding-top: 15px;
+}
+.footer span{
+    font-size: 50px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 102px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
